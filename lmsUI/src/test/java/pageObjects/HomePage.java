@@ -10,10 +10,10 @@ import util.ElementUtil;
 
 public class HomePage extends BasePage{
 
-	private static  WebDriver driver;
+	private WebDriver driver;
 
-		public HomePage(WebDriver driver) {
-			this.driver = driver;
+		public HomePage() {
+			this.driver = BasePage.getDriver();
 			PageFactory.initElements(driver, this);
 		}
 		

@@ -8,8 +8,6 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.testng.Assert;
 import util.ExcelReaderListMap;
 import util.LoggerLoad;
-
-import driverFactory.BasePage;
 import pageObjects.LoginPage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -25,7 +23,8 @@ public class LoginSteps{
 	   }
 	@Given("Admin is on login Page")
 	public void admin_is_on_login_page() throws InterruptedException {
-		picoObject.loginPage= new LoginPage( BasePage.getDriver());		
+		System.out.println("creating login page object");
+		picoObject.loginPage= new LoginPage();		
 		
 	}
 	@Given("The browser is open")
@@ -49,7 +48,30 @@ public class LoginSteps{
 		Assert.assertEquals(loginTitle, "LMS");
 	}
 	
+	@When("Admin enter valid username as {string} ,password as {string} and role as {string}")
+	public void admin_enter_valid_username_as_password_as_and_role_as(String username, String pwd, String role) throws InterruptedException 
+	{
+			
+		picoObject.loginPage.sendUserName(username);
+		picoObject.loginPage.sendPwdName(pwd);;
+		picoObject.loginPage.sendRoleAsAdmin();
+	}
+
+	@When("clicks login button")
+	public void clicks_login_button() throws InterruptedException {
+		
+		picoObject.loginPage.clickLogin();
+		Thread.sleep(3000);
+	}
 	
+	@Then("Admin should land on home page")
+	public void admin_should_land_on_home_page() throws InterruptedException {
+	   
+		picoObject.homePage = picoObject.loginPage.getHomePageObject();	
+	    String pageTitle =	picoObject.homePage.getHomePageTitle();
+		Assert.assertEquals(pageTitle, "LMS");
+		Assert.assertTrue(picoObject.homePage.isHomePageToolBarPresent());;
+	}
 	
 	@When("Admin gives the invalid LMS portal URL")
 	public void admin_gives_the_invalid_lms_portal_url() throws InterruptedException {
@@ -172,29 +194,8 @@ public class LoginSteps{
 		Assert.assertEquals(textColor, expectedGrayColor); 
 	}
 	
-	@When("Admin enter valid username as {string} ,password as {string} and role as {string}")
-	public void admin_enter_valid_username_as_password_as_and_role_as(String username, String pwd, String role) throws InterruptedException 
-	{
-			
-		picoObject.loginPage.sendUserName(username);
-		picoObject.loginPage.sendPwdName(pwd);;
-		picoObject.loginPage.sendRoleAsAdmin();
-	}
 
-	@When("clicks login button")
-	public void clicks_login_button() throws InterruptedException {
-		
-		picoObject.loginPage.clickLogin();
-		Thread.sleep(3000);
-	}
-	@Then("Admin should land on home page")
-	public void admin_should_land_on_home_page() throws InterruptedException {
-	   
-		picoObject.homePage = picoObject.loginPage.getHomePageObject();	
-	    String pageTitle =	picoObject.homePage.getHomePageTitle();
-		Assert.assertEquals(pageTitle, "LMS");
-		Assert.assertTrue(picoObject.homePage.isHomePageToolBarPresent());;
-	}
+
 
 	
 	//Datadriven from Excel

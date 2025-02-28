@@ -4,8 +4,8 @@ import io.cucumber.testng.CucumberOptions;
 import org.testng.annotations.DataProvider;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 
-@CucumberOptions(	tags="",
-					features="src/test/resources/FeaturesFiles/",
+@CucumberOptions(	tags="@login",
+					features="src/test/resources/FeaturesFiles/TC001_Login.feature",
 					glue={"stepDefinitions","hooks"},
 					monochrome=true,
 					//dryRun=false,
@@ -15,10 +15,11 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
 
 public class TestRun extends AbstractTestNGCucumberTests{
 	
-	
-	  @Override
-	 
-	 @DataProvider(parallel=true) public Object[][] scenarios(){ return
-	super.scenarios(); }
+	 @Override
+	 @DataProvider(parallel=true) 
+	  public Object[][] scenarios()
+	  { 
+		  return super.scenarios(); 
+	  }
 	 
 }

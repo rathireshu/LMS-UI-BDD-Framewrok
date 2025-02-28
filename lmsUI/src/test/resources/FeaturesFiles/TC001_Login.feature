@@ -1,10 +1,16 @@
 Feature: Login  Page Verification 
 
 Background:
-        Given Admin is on login Page
+       Given Admin is on login Page
+  @login
+ Scenario: Validate login with valid data in all field
+  		Given Admin gives the correct LMS portal URL
+  		When Admin enter valid username as "sdetnumpyninja@gmail.com" ,password as "Feb@2025" and role as "Admin" 
+  		And clicks login button 
+  		Then Admin should land on home page  
   
    Scenario: Verify Admin is able to land on login page
-  		Given The browser is open
+  		Given The browser is open       
   		When Admin gives the correct LMS portal URL
   		Then Admin should land on the login page
  
@@ -77,7 +83,7 @@ Background:
   		Given The browser is open
   		When Admin gives the correct LMS portal URL
   		Then Admin should see "Admin , staff, student" options in dropdown
- @smoke
+ 
  Scenario: Verify the alignment input field for the login
   		Given The browser is open
   		When Admin gives the correct LMS portal URL
@@ -98,12 +104,6 @@ Background:
   		When Admin gives the correct LMS portal URL
   		Then Admin should see password in gray color
 
-
- Scenario: Validate login with valid data in all field
-  		Given Admin gives the correct LMS portal URL
-  		When Admin enter valid username as "sdetnumpyninja@gmail.com" ,password as "Feb@2025" and role as "Admin" 
-  		And clicks login button 
-  		Then Admin should land on home page  
 
  Scenario Outline: Validate login with invalid data
   		Given Admin gives the correct LMS portal URL

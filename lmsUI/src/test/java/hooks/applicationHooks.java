@@ -6,31 +6,38 @@ import io.cucumber.java.Before;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import io.cucumber.java.Scenario;
-import util.ConfigReader;
 
 public class applicationHooks extends BasePage {
 
-	// these variables are private as they are specific to this class only
-
-	private WebDriver driver;
-		
+	
 	@Before
 	public void setUp() {
-	driver = driverManager(ConfigReader.getPropObject().getProperty("browser"));
-	
+	//fetches the current WebDriver instance from ThreadLocal<WebDriver> 
+		System.out.println("Before Hook - Driver setup");
+	    BasePage.getDriver();//initialize the driver very first time
   }
-	
 	@After
 	public void tearDownNScreenShot(Scenario scenario) {	
-	System.out.println("in tear down hooks");
+		System.out.println("After Hook - Driver quitting");
+	
+	// Always fetch the latest driver before taking a screenshot
+    WebDriver currentDriver = BasePage.getDriver();
+    
 	if(scenario.isFailed()) {
 		
-		byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-		scenario.attach(screenshot, "image/png", "Failed Scenario Screenshot");
-		System.out.println("Screenshot attached for failed scenario: " + scenario.getName());
-	}
-	
-	
-	quitDriver();
+		try {
+            if (currentDriver != null) {
+                byte[] screenshot = ((TakesScreenshot) currentDriver).getScreenshotAs(OutputType.BYTES);
+                scenario.attach(screenshot, "image/png", "Failed Scenario Screenshot");
+                System.out.println("Screenshot attached for failed scenario: " + scenario.getName());
+            } else {
+                System.out.println("Driver is null before screenshot capture.");
+            }
+        } catch (Exception e) {
+            System.err.println("Error capturing screenshot: " + e.getMessage());
+        }
+    }
+	BasePage.quitDriver();
+	 System.out.println("Driver is null in After Hook");
   }
 }

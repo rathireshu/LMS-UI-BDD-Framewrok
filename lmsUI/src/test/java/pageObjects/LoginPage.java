@@ -1,21 +1,16 @@
 package pageObjects;
 
-import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import pageObjects.HomePage;
 import util.ElementUtil;
 import driverFactory.BasePage;
 import util.ConfigReader;
@@ -25,8 +20,10 @@ public class LoginPage extends BasePage
 {
 	WebDriver driver;
 
-	public LoginPage(WebDriver driver) {
-		this.driver = driver;
+	public LoginPage() {
+		System.out.println("insid loginPage():--Calling getDriver() from BasePage");
+		// Use the already initialized driver in hooks
+		this.driver = BasePage.getDriver();  
 		PageFactory.initElements(driver, this);
 	}
 
@@ -326,8 +323,8 @@ public class LoginPage extends BasePage
 
 	public HomePage getHomePageObject() {
 
-//when ever user redirected to new page that method shld return new page object.	   
-		HomePage homePage = new HomePage(driver);// this driver has a reference home page driver
+     //when ever user redirected to home page that method shld return home page object.	   
+		HomePage homePage = new HomePage();
 		return homePage;
 	}
 

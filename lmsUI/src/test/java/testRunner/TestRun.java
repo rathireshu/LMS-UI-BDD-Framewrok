@@ -2,6 +2,7 @@ package testRunner;
 
 import io.cucumber.testng.CucumberOptions;
 import org.testng.annotations.DataProvider;
+
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 
 @CucumberOptions(	tags="@login",
@@ -9,17 +10,15 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
 					glue={"stepDefinitions","hooks"},
 					monochrome=true,
 					//dryRun=false,
-					plugin= {"pretty","html:target/cucumber-Report.html",}
+					plugin= {"pretty","html:target/cucumber-Report.html", "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}
 		
 		)
-
+//@Listeners({ExtentITestListenerClassAdapter.class})
 public class TestRun extends AbstractTestNGCucumberTests{
-	
 	 @Override
 	 @DataProvider(parallel=true) 
 	  public Object[][] scenarios()
 	  { 
 		  return super.scenarios(); 
 	  }
-	 
 }

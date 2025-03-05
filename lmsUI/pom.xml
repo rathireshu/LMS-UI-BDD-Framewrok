@@ -93,40 +93,21 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.15.1</version>
 		</dependency>
-
-
-		<!--
-		https://mvnrepository.com/artifact/io.qameta.allure/allure-cucumber7-jvm -->
-		<dependency>
-			<groupId>io.qameta.allure</groupId>
-			<artifactId>allure-cucumber7-jvm</artifactId>
-			<version>2.26.0</version>
-		</dependency>
-
-
-		<!--
-		https://mvnrepository.com/artifact/com.aventstack/extentreports-testng-adapter -->
-		<!--<dependency>
-    <groupId>com.aventstack</groupId>
-    <artifactId>extentreports-testng-adapter</artifactId>
-    <version>1.2.2</version>
-</dependency>-->
-
-		<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
-		<!--<dependency>
+<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
+<dependency>
     <groupId>com.aventstack</groupId>
     <artifactId>extentreports</artifactId>
-    <version>5.1.1</version>
-</dependency>-->
+    <version>5.1.2</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/tech.grasshopper/extentreports-cucumber7-adapter -->
+<dependency>
+    <groupId>tech.grasshopper</groupId>
+    <artifactId>extentreports-cucumber7-adapter</artifactId>
+    <version>1.14.0</version>
+</dependency>
 
 
-		<!--
-		https://mvnrepository.com/artifact/tech.grasshopper/extentreports-cucumber7-adapter -->
-		<dependency>
-			<groupId>tech.grasshopper</groupId>
-			<artifactId>extentreports-cucumber7-adapter</artifactId>
-			<version>1.14.0</version>
-		</dependency>
 
 
 		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->

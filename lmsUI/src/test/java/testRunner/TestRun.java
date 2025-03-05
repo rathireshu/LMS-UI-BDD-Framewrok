@@ -10,7 +10,7 @@ import io.cucumber.testng.AbstractTestNGCucumberTests;
 					glue={"stepDefinitions","hooks"},
 					monochrome=true,
 					//dryRun=false,
-					plugin= {"pretty","html:target/cucumber-Report.html", "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}
+					plugin= {"pretty","html:test-output/cucumber-Report.html", "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}
 		
 		)
 //@Listeners({ExtentITestListenerClassAdapter.class})

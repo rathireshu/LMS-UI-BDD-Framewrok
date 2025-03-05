@@ -1,10 +1,13 @@
-<extentreports>
-    <configuration>
+<extent>
+    <report>
+        <title>LMS-UI Test Execution Report</title>
         <theme>standard</theme>
-        <encoding>UTF-8</encoding>
-        <protocol>https</protocol>
-        <documentTitle>Test Execution Report</documentTitle>
-        <reportName>LMS-UI-TestReport</reportName>
-        <timeStampFormat>MMM dd, yyyy HH:mm:ss</timeStampFormat>
-    </configuration>
-</extentreports>
+        <report-name>Test Report</report-name>
+    </report>
+
+    <spark>
+        <start>true</start>
+        <out>target/extent-reports/extentSpark.html</out>
+        <config>src/test/resources/extent-config.xml</config>
+    </spark>
+</extent>
